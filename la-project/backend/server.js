@@ -5,6 +5,7 @@ const cors = require("cors");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
+const bcrypt = require('bcryptjs');
 var jwt=require('jsonwebtoken')
 
 const app = express();
@@ -151,7 +152,6 @@ app.delete("/api/wishlist/:id", verifyToken, async (req, res) => {
   }
 });
 
-const bcrypt = require('bcryptjs');
 app.post("/signup", async (req, res) => {
   const { username, password, email, name, phone } = req.body;
   try {
