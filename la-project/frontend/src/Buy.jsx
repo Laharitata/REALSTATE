@@ -26,7 +26,7 @@ export default function Buy() {
 
     const fetchProperties = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/properties");
+        const res = await axios.get("https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app/api/properties");
         setProperties(res.data);
       } catch (err) {
         console.error(err);

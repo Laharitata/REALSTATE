@@ -9,7 +9,7 @@ export default function Profile() {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:5000/profile", {
+        const res = await axios.get("https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app/profile", {
           headers: { Authorization: `Bearer ${token}` }
         });
         setUser(res.data.user);
@@ -21,7 +21,7 @@ export default function Profile() {
     const fetchPurchaseHistory = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:5000/api/purchase-history", {
+        const res = await axios.get("https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app/api/purchase-history", {
           headers: { Authorization: `Bearer ${token}` }
         });
         setPurchaseHistory(res.data.purchases);

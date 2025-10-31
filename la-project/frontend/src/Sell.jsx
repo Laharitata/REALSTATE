@@ -26,7 +26,7 @@ export default function Sell() {
         else formData.append(key, form[key]);
       });
 
-      await axios.post("http://localhost:5000/api/properties", formData, {
+      await axios.post("https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app/api/properties", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           "Authorization": `Bearer ${token}`

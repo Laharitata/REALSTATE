@@ -9,7 +9,7 @@ export default function Wishlist() {
   const fetchWishlist = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5000/api/wishlist", {
+      const res = await axios.get("https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app/api/wishlist", {
         headers: { Authorization: `Bearer ${token}` }
       });
       // Ensure only non-null objects
@@ -29,7 +29,7 @@ export default function Wishlist() {
   const handleRemove = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/wishlist/${id}`, {
+      await axios.delete(`https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app/api/wishlist/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchWishlist(); // refresh after remove
