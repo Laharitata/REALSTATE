@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import api from "./api";
 
 export default function Sell() {
   const [form, setForm] = useState({
@@ -26,7 +26,7 @@ export default function Sell() {
         else formData.append(key, form[key]);
       });
 
-      await axios.post("https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app/api/properties", formData, {
+      await api.post("/properties", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           "Authorization": `Bearer ${token}`

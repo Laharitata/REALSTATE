@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "./api";
 
 export default function Profile() {
   const [user, setUser] = useState(null);
@@ -21,7 +21,7 @@ export default function Profile() {
     const fetchPurchaseHistory = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app/api/purchase-history", {
+        const res = await api.get("/purchase-history", {
           headers: { Authorization: `Bearer ${token}` }
         });
         setPurchaseHistory(res.data.purchases);

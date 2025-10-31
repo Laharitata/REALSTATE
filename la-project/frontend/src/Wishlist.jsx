@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "./api";
 import PropertyCard from "./PropertyCard";
 
 export default function Wishlist() {
@@ -9,7 +9,7 @@ export default function Wishlist() {
   const fetchWishlist = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app/api/wishlist", {
+      const res = await api.get("/wishlist", {
         headers: { Authorization: `Bearer ${token}` }
       });
       // Ensure only non-null objects
@@ -29,7 +29,7 @@ export default function Wishlist() {
   const handleRemove = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app/api/wishlist/${id}`, {
+      await api.delete(`/wishlist/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchWishlist(); // refresh after remove

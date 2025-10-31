@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "./api";
 import PropertyCard from "./PropertyCard";
 
 export default function Buy() {
@@ -26,7 +26,7 @@ export default function Buy() {
 
     const fetchProperties = async () => {
       try {
-        const res = await axios.get("https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app/api/properties");
+        const res = await api.get("/properties");
         setProperties(res.data);
       } catch (err) {
         console.error(err);

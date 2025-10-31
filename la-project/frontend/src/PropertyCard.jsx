@@ -1,6 +1,6 @@
 // PropertyCard.js
 import { useState } from "react";
-import axios from "axios";
+import api from "./api";
 
 export default function PropertyCard({ property, onRemove }) {
   const [showContact, setShowContact] = useState(false);
@@ -39,7 +39,7 @@ export default function PropertyCard({ property, onRemove }) {
     if (!property._id) return alert("Property ID missing!");
     try {
       const token = localStorage.getItem("token");
-      await axios.post("https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app/api/wishlist", { id: property._id }, {
+      await api.post("/wishlist", { id: property._id }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert("Added to Wishlist ❤️");
@@ -54,7 +54,7 @@ export default function PropertyCard({ property, onRemove }) {
     if (!property._id) return alert("Property ID missing!");
     try {
       const token = localStorage.getItem("token");
-      await axios.post("https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app/api/purchase", { id: property._id }, {
+      await api.post("/purchase", { id: property._id }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert("Property purchased successfully! 🎉");
@@ -69,7 +69,7 @@ export default function PropertyCard({ property, onRemove }) {
     if (!property._id) return alert("Property ID missing!");
     try {
       const token = localStorage.getItem("token");
-      await axios.post("https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app/api/purchase", { id: property._id }, {
+      await api.post("/purchase", { id: property._id }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setInterested(true);
