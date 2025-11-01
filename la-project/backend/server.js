@@ -57,16 +57,7 @@ const Purchase = mongoose.model("Purchase", purchaseSchema);
 const User = require('./models/user');
 
 // ------------------ Multer Setup ------------------
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    const dir = "./uploads";
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir);
-    cb(null, dir);
-  },
-  filename: function(req, file, cb) {
-    cb(null, Date.now() + "-" + file.originalname);
-  }
-});
+const storage = multer.memoryStorage(); // Use memory storage for Vercel compatibility
 
 const upload = multer({ storage });
 
