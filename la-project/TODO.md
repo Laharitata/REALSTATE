@@ -16,5 +16,5 @@
 - [x] Update Profile.jsx: Replace "https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app" with "https://realstate-2-8vnf.onrender.com"
 - [x] Update mongoose version to ^8.0.0 in backend/package.json
 - [x] Redeploy backend to Render to pick up the environment variables
-- [ ] Redeploy frontend to Vercel with new Render backend URLs
-- [ ] Test signup and login again after redeployment
+- [x] Redeploy frontend to Vercel with new Render backend URLs
+- [x] Test signup and login again after redeployment
