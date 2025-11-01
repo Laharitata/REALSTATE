@@ -14,5 +14,6 @@
 - [x] Add .env file in frontend with REACT_APP_BACKEND_URL=https://realstate-5.onrender.com
 - [x] Update Signup.jsx, Login.jsx, api.js, Profile.jsx to use process.env.REACT_APP_BACKEND_URL
 - [x] Commit and push changes to GitHub
-- [ ] Deploy frontend to Netlify (manual step: connect GitHub repo, set build command to npm run build, publish directory to build)
+- [x] Fix Netlify build config to point to frontend directory
+- [x] Redeploy frontend to Netlify
 - [ ] Test signup and login on new Netlify URL
