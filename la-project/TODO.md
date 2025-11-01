@@ -11,4 +11,8 @@
 - [x] Update mongoose version to ^8.0.0 in backend/package.json
 - [x] Deploy backend to Render using render.yaml
 - [x] Deploy frontend to Netlify using netlify.toml
-- [ ] Test signup and login functionality on deployed site (please test manually at the new Netlify frontend URL)
+- [x] Add .env file in frontend with REACT_APP_BACKEND_URL=https://realstate-5.onrender.com
+- [x] Update Signup.jsx, Login.jsx, api.js, Profile.jsx to use process.env.REACT_APP_BACKEND_URL
+- [x] Commit and push changes to GitHub
+- [ ] Deploy frontend to Netlify (manual step: connect GitHub repo, set build command to npm run build, publish directory to build)
+- [ ] Test signup and login on new Netlify URL
