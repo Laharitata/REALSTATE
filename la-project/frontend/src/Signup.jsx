@@ -19,7 +19,7 @@ export default function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://realstate-jynk-7gd3kac4n-laharis-projects-185ef7fa.vercel.app/signup", form);
+      await axios.post("https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app/signup", form);
       alert("Signup Successful");
       navigate("/");
     } catch (err) {

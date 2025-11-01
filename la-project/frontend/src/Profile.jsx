@@ -9,7 +9,7 @@ export default function Profile() {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("https://realstate-jynk-7gd3kac4n-laharis-projects-185ef7fa.vercel.app/profile", {
+        const res = await axios.get("https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app/profile", {
           headers: { Authorization: `Bearer ${token}` }
         });
         setUser(res.data.user);

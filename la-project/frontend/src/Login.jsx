@@ -10,7 +10,7 @@ export default function AuthForm() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://realstate-jynk-7gd3kac4n-laharis-projects-185ef7fa.vercel.app/login", { username, password });
+      const res = await axios.post("https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app/login", { username, password });
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       alert("Login Successful");
