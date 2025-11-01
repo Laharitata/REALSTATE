@@ -78,7 +78,7 @@ app.post("/api/properties", upload.array("images", 5), async (req, res) => {
   try {
     const token = req.headers.authorization?.split(' ')[1];
     if (!token) return res.status(401).json({ message: "Token missing" });
-    const decoded = jwt.verify(token, "sectiona");
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || "sectiona");
     const user = await User.findById(decoded.id);
     if (!user) return res.status(404).json({ message: "User not found" });
 
@@ -168,7 +168,7 @@ app.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(401).json({ message: "Invalid password" });
 
-    const token = jwt.sign({ username: user.username, id: user._id }, "sectiona", { expiresIn: "1h" });
+    const token = jwt.sign({ username: user.username, id: user._id }, process.env.JWT_SECRET || "sectiona", { expiresIn: "1h" });
     res.json({ message: "Access granted", token, user: { username: user.username, name: user.name, email: user.email, phone: user.phone, joined: user.joined } });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -181,7 +181,7 @@ async function verifyToken(req, res, next) {
     const token = req.headers.authorization?.split(' ')[1];
     if (!token) return res.status(401).json({ message: "Token missing" });
 
-    const decoded = jwt.verify(token, "sectiona");
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || "sectiona");
     const user = await User.findById(decoded.id);
     if (!user) return res.status(404).json({ message: "User not found" });
     req.user = user;
