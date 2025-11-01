@@ -1,20 +1,14 @@
 # Fix Signup and Login Not Working
 
 ## Tasks
-- [x] Update Signup.jsx: Revert to "https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app" (working backend URL)
-- [x] Update Login.jsx: Revert to "https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app" (working backend URL)
-- [x] Update api.js: Revert to "https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app" (working backend URL)
-- [x] Update Profile.jsx: Revert to "https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app" (working backend URL)
-- [x] Redeploy frontend to Vercel
-- [x] Test signup and login functionality on deployed site (Browser tool disabled, manual testing recommended - please test manually at https://realstate-jynk-7gd3kac4n-laharis-projects-185ef7fa.vercel.app)
-- [x] Deploy backend to Render
-- [x] Set MONGO_URI environment variable in Render backend project: mongodb+srv://nb848435_db_user:4goI0pCKvM7T3Azp@cluster0.3gm81nf.mongodb.net/?appName=Cluster0
-- [x] Set JWT_SECRET environment variable in Render backend project: fcdfa990aa96560b
+- [x] Remove Vercel configuration files (vercel.json from frontend and backend)
+- [x] Create Netlify configuration for frontend (netlify.toml)
+- [x] Create Render configuration for backend (render.yaml)
 - [x] Update Signup.jsx: Replace "https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app" with "https://realstate-4.onrender.com"
 - [x] Update Login.jsx: Replace "https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app" with "https://realstate-4.onrender.com"
 - [x] Update api.js: Replace "https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app" with "https://realstate-4.onrender.com"
 - [x] Update Profile.jsx: Replace "https://realstate-1f928m2sl-laharis-projects-185ef7fa.vercel.app" with "https://realstate-4.onrender.com"
 - [x] Update mongoose version to ^8.0.0 in backend/package.json
-- [x] Redeploy backend to Render to pick up the environment variables
-- [x] Redeploy frontend to Vercel with new Render backend URLs
-- [x] Test signup and login again after redeployment
+- [x] Deploy backend to Render using render.yaml
+- [x] Deploy frontend to Netlify using netlify.toml
+- [ ] Test signup and login functionality on deployed site (please test manually at the new Netlify frontend URL)
