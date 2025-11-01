@@ -82,7 +82,7 @@ app.post("/api/properties", upload.array("images", 5), async (req, res) => {
     const user = await User.findById(decoded.id);
     if (!user) return res.status(404).json({ message: "User not found" });
 
-    const imagePaths = req.files.map(file => "/uploads/" + file.filename);
+    const imagePaths = req.files ? req.files.map(file => "/uploads/" + file.filename) : [];
 
     const newProperty = new Property({
       title: req.body.title,
