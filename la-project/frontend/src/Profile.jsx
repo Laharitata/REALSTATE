@@ -10,7 +10,7 @@ export default function Profile() {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("https://realstate-5.onrender.com/profile", {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/profile`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setUser(res.data.user);

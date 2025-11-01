@@ -19,7 +19,7 @@ export default function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://realstate-5.onrender.com/signup", form);
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/signup`, form);
       alert("Signup Successful");
       navigate("/");
     } catch (err) {
