@@ -10,7 +10,7 @@ export default function AuthForm() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://realstate-2-8vnf.onrender.com/login", { username, password });
+      const res = await axios.post("https://realstate-4.onrender.com/login", { username, password });
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       alert("Login Successful");

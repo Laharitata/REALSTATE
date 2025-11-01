@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://realstate-2-8vnf.onrender.com/api",  // backend deployed on Render
+  baseURL: "https://realstate-4.onrender.com/api",  // backend deployed on Render
 });
