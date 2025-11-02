@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import api from "./api";
+import axios from "axios";
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 export default function ContactSellerForm({ property, onClose, onSuccess }) {
   const [formData, setFormData] = useState({
@@ -17,7 +20,7 @@ export default function ContactSellerForm({ property, onClose, onSuccess }) {
       try {
         const token = localStorage.getItem("token");
         if (token) {
-          const response = await api.get("/profile", {
+          const response = await axios.get(`${API_URL}/profile`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           const user = response.data.user;
