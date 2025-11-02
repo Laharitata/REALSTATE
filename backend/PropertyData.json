@@ -1,0 +1,157 @@
+[
+  {
+    "title": "Sunshine Apartments",
+    "type": "Flat",
+    "price": 4500000,
+    "location": "Hyderabad",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "area": 1200,
+    "status": "available",
+    "image": "flat1.jpg"
+  },
+  {
+    "title": "Green View Residency",
+    "type": "Flat",
+    "price": 3800000,
+    "location": "Bangalore",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "area": 950,
+    "status": "available",
+    "image": "flat2.jpg"
+  },
+  {
+    "title": "Skyline Towers",
+    "type": "Flat",
+    "price": 5200000,
+    "location": "Pune",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "area": 1300,
+    "status": "available",
+    "image": "flat3.jpg"
+  },
+  {
+    "title": "Lakeview Residency",
+    "type": "Flat",
+    "price": 4000000,
+    "location": "Chennai",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "area": 1100,
+    "status": "available",
+    "image": "flat4.jpg"
+  },
+  {
+    "title": "Elite Towers",
+    "type": "Flat",
+    "price": 6000000,
+    "location": "Mumbai",
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "area": 1500,
+    "status": "available",
+    "image": "flat5.jpg"
+  },
+  {
+    "title": "Dream Villa",
+    "type": "Individual House",
+    "price": 8500000,
+    "location": "Hyderabad",
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "area": 2000,
+    "status": "available",
+    "image": "house1.jpg"
+  },
+  {
+    "title": "Green Meadows",
+    "type": "Individual House",
+    "price": 7200000,
+    "location": "Bangalore",
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "area": 1800,
+    "status": "available",
+    "image": "house2.jpg"
+  },
+  {
+    "title": "Blue Haven",
+    "type": "Individual House",
+    "price": 6500000,
+    "location": "Chennai",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "area": 1600,
+    "status": "available",
+    "image": "house3.jpg"
+  },
+  {
+    "title": "Rosewood Bungalow",
+    "type": "Individual House",
+    "price": 9000000,
+    "location": "Pune",
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "area": 2200,
+    "status": "available",
+    "image": "house4.jpg"
+  },
+  {
+    "title": "Serene Cottage",
+    "type": "Individual House",
+    "price": 7800000,
+    "location": "Mumbai",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "area": 1700,
+    "status": "available",
+    "image": "house5.jpg"
+  },
+  {
+    "title": "City Mall Shop",
+    "type": "Shop",
+    "price": 2500000,
+    "location": "Hyderabad",
+    "area": 400,
+    "status": "available",
+    "image": "shop1.jpg"
+  },
+  {
+    "title": "Downtown Boutique",
+    "type": "Shop",
+    "price": 3000000,
+    "location": "Bangalore",
+    "area": 500,
+    "status": "available",
+    "image": "shop2.jpg"
+  },
+  {
+    "title": "Market Plaza Shop",
+    "type": "Shop",
+    "price": 2700000,
+    "location": "Pune",
+    "area": 450,
+    "status": "available",
+    "image": "shop3.jpg"
+  },
+  {
+    "title": "City Center Store",
+    "type": "Shop",
+    "price": 3200000,
+    "location": "Chennai",
+    "area": 480,
+    "status": "available",
+    "image": "shop4.jpg"
+  },
+  {
+    "title": "Metro Commercial Space",
+    "type": "Shop",
+    "price": 3500000,
+    "location": "Mumbai",
+    "area": 550,
+    "status": "available",
+    "image": "shop5.jpg"
+  }
+]
