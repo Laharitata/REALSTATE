@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const API_URL = 'http://localhost:5000';
+const API_URL = 'https://realstate-7.onrender.com';
 
 async function testContactSellerAPI() {
   console.log('🧪 Testing Contact Seller API\n');
