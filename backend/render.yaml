@@ -6,6 +6,10 @@ services:
     startCommand: node server.js
     envVars:
       - key: MONGO_URI
-        value: mongodb+srv://nb848435_db_user:4goI0pCKvM7T3Azp@cluster0.3gm81nf.mongodb.net/?appName=Cluster0
+        value: mongodb+srv://nb848435_db_user:4goI0pCKvM7T3Azp@cluster0.3gm81nf.mongodb.net/realstatedb?appName=Cluster0
       - key: JWT_SECRET
         value: fcdfa990aa96560b
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
