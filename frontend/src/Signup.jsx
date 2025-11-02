@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 export default function Signup() {
   const [form, setForm] = useState({
@@ -19,11 +20,21 @@ export default function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/signup", form);
+      const res = await fetch(`${API_URL}/signup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      
+      if (!res.ok) {
+        throw new Error(data.message || "Signup failed");
+      }
+      
       alert("Signup Successful");
       navigate("/");
     } catch (err) {
-      alert(err.response?.data?.message || "Signup failed");
+      alert(err.message || "Signup failed");
     }
   };
 

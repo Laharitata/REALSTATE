@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 export default function AuthForm() {
   const [username, setUsername] = useState("");
@@ -10,13 +11,23 @@ export default function AuthForm() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/login", { username, password });
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
+      const res = await fetch(`${API_URL}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await res.json();
+      
+      if (!res.ok) {
+        throw new Error(data.message || "Login failed");
+      }
+      
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
       alert("Login Successful");
       navigate("/buy");
     } catch (err) {
-      alert(err.response?.data?.message || "Login failed");
+      alert(err.message || "Login failed");
     }
   };
 
