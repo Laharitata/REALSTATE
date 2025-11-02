@@ -61,6 +61,24 @@ const upload = multer({ storage });
 
 // ------------------ Routes ------------------
 
+// Root route - health check
+app.get("/", (req, res) => {
+  res.json({ 
+    message: "Real Estate API is running", 
+    status: "OK",
+    endpoints: {
+      properties: "/api/properties",
+      wishlist: "/api/wishlist",
+      contactRequests: "/api/contact-requests",
+      auth: {
+        signup: "/signup",
+        login: "/login",
+        profile: "/profile"
+      }
+    }
+  });
+});
+
 // Get all properties
 app.get("/api/properties", async (req, res) => {
   try {
