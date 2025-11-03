@@ -20,6 +20,7 @@ export default function ContactSellerForm({ property, onClose, onSuccess }) {
       try {
         const token = localStorage.getItem("token");
         if (token) {
+          // Use axios with full URL for profile endpoint (not using /api prefix)
           const response = await axios.get(`${API_URL}/profile`, {
             headers: { Authorization: `Bearer ${token}` }
           });
@@ -33,6 +34,7 @@ export default function ContactSellerForm({ property, onClose, onSuccess }) {
         }
       } catch (err) {
         console.error("Error fetching user data:", err);
+        // Don't show error to user, just log it - form can still be submitted
       }
     };
     fetchUserData();
@@ -63,13 +65,20 @@ export default function ContactSellerForm({ property, onClose, onSuccess }) {
         return;
       }
 
-      console.log("Submitting contact request for property:", property._id);
+      console.log("=== FORM SUBMISSION DEBUG ===");
+      console.log("Full property object:", property);
+      console.log("Property ID:", property._id);
+      console.log("Property ID type:", typeof property._id);
       console.log("Message:", formData.message);
+      console.log("Token:", token ? "Present" : "Missing");
 
-      const response = await api.post("/contact-requests", {
+      const requestData = {
         propertyId: property._id,
         message: formData.message
-      }, {
+      };
+      console.log("Request data being sent:", requestData);
+
+      const response = await api.post("/contact-requests", requestData, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
