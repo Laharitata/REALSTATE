@@ -44,7 +44,7 @@ export default function BuyOptionsModal({ property, onClose, onSuccess }) {
     try {
       const token = localStorage.getItem("token");
       if (token) {
-        const response = await axios.get(`${API_URL}/profile`, {
+        const response = await axios.get(`${API_URL}/api/profile`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const user = response.data.user;

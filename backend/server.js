@@ -72,10 +72,12 @@ app.get("/", (req, res) => {
       properties: "/api/properties",
       wishlist: "/api/wishlist",
       contactRequests: "/api/contact-requests",
+      appointments: "/api/appointments",
+      offers: "/api/offers",
       auth: {
-        signup: "/signup",
-        login: "/login",
-        profile: "/profile"
+        signup: "/api/signup",
+        login: "/api/login",
+        profile: "/api/profile"
       }
     }
   });
@@ -161,7 +163,7 @@ app.delete("/api/wishlist/:id", verifyToken, async (req, res) => {
   }
 });
 
-app.post("/signup", async (req, res) => {
+app.post("/api/signup", async (req, res) => {
   const { username, password, email, name, phone } = req.body;
   try {
     const existingUser = await User.findOne({ $or: [{ username }, { email }] });
@@ -177,7 +179,7 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-app.post("/login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await User.findOne({ username });
@@ -209,7 +211,7 @@ async function verifyToken(req, res, next) {
   }
 }
 
-app.get("/profile", verifyToken, (req, res) => {
+app.get("/api/profile", verifyToken, (req, res) => {
   res.json({ message: "access granted", user: req.user });
 });
 
