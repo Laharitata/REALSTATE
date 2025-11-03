@@ -71,6 +71,7 @@ export default function ContactSellerForm({ property, onClose, onSuccess }) {
       console.log("Property ID type:", typeof property._id);
       console.log("Message:", formData.message);
       console.log("Token:", token ? "Present" : "Missing");
+      console.log("API URL:", API_URL);
 
       const requestData = {
         propertyId: property._id,
@@ -78,18 +79,28 @@ export default function ContactSellerForm({ property, onClose, onSuccess }) {
       };
       console.log("Request data being sent:", requestData);
 
-      const response = await api.post("/contact-requests", requestData, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      // Use axios directly with full URL to ensure proper headers
+      const response = await axios.post(
+        `${API_URL}/api/contact-requests`,
+        requestData,
+        {
+          headers: { 
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
 
       console.log("Contact request submitted successfully:", response.data);
       alert("Contact request submitted successfully! The seller will reach out to you soon.");
       if (onSuccess) onSuccess();
       onClose();
     } catch (err) {
+      console.error("=== ERROR DETAILS ===");
       console.error("Error submitting contact request:", err);
       console.error("Error response:", err.response?.data);
       console.error("Error status:", err.response?.status);
+      console.error("Error message:", err.message);
       
       let errorMessage = "Failed to submit contact request. ";
       
