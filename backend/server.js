@@ -39,6 +39,8 @@ const Purchase = mongoose.model("Purchase", purchaseSchema);
 
 const User = require('./models/user');
 const ContactRequest = require('./models/contactRequest');
+const Appointment = require('./models/appointment');
+const Offer = require('./models/offer');
 
 // ------------------ Multer Setup ------------------
 // Create uploads directory if it doesn't exist
@@ -265,6 +267,158 @@ app.get("/api/contact-requests/seller", verifyToken, async (req, res) => {
       .sort({ createdAt: -1 });
     
     res.json({ contactRequests: requests });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ------------------ Appointments ------------------
+
+// Submit appointment request
+app.post("/api/appointments", verifyToken, async (req, res) => {
+  try {
+    const { propertyId, appointmentDate, appointmentTime, appointmentType, message } = req.body;
+    
+    const property = await Property.findById(propertyId);
+    if (!property) {
+      return res.status(404).json({ error: "Property not found" });
+    }
+
+    const newAppointment = new Appointment({
+      buyer: req.user._id,
+      property: propertyId,
+      buyerName: req.user.name,
+      buyerEmail: req.user.email,
+      buyerPhone: req.user.phone || '',
+      appointmentDate,
+      appointmentTime,
+      appointmentType,
+      message
+    });
+
+    await newAppointment.save();
+    res.json({ message: "Appointment scheduled successfully", appointment: newAppointment });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Get user's appointments
+app.get("/api/appointments", verifyToken, async (req, res) => {
+  try {
+    const appointments = await Appointment.find({ buyer: req.user._id })
+      .populate("property")
+      .sort({ appointmentDate: 1 });
+    res.json({ appointments });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Update appointment status
+app.patch("/api/appointments/:id", verifyToken, async (req, res) => {
+  try {
+    const { status } = req.body;
+    const appointment = await Appointment.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      { new: true }
+    ).populate("property");
+    
+    if (!appointment) {
+      return res.status(404).json({ error: "Appointment not found" });
+    }
+    
+    res.json({ message: "Appointment updated successfully", appointment });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ------------------ Offers ------------------
+
+// Submit offer
+app.post("/api/offers", verifyToken, async (req, res) => {
+  try {
+    const { propertyId, offerAmount, message, financingType } = req.body;
+    
+    const property = await Property.findById(propertyId);
+    if (!property) {
+      return res.status(404).json({ error: "Property not found" });
+    }
+
+    const newOffer = new Offer({
+      buyer: req.user._id,
+      property: propertyId,
+      buyerName: req.user.name,
+      buyerEmail: req.user.email,
+      buyerPhone: req.user.phone || '',
+      offerAmount,
+      message,
+      financingType
+    });
+
+    await newOffer.save();
+    res.json({ message: "Offer submitted successfully", offer: newOffer });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Get user's offers
+app.get("/api/offers", verifyToken, async (req, res) => {
+  try {
+    const offers = await Offer.find({ buyer: req.user._id })
+      .populate("property")
+      .sort({ createdAt: -1 });
+    res.json({ offers });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Update offer status (for sellers)
+app.patch("/api/offers/:id", verifyToken, async (req, res) => {
+  try {
+    const { status, counterOffer } = req.body;
+    const updateData = { status, updatedAt: Date.now() };
+    
+    if (counterOffer) {
+      updateData.counterOffer = {
+        amount: counterOffer.amount,
+        message: counterOffer.message,
+        date: Date.now()
+      };
+    }
+    
+    const offer = await Offer.findByIdAndUpdate(
+      req.params.id,
+      updateData,
+      { new: true }
+    ).populate("property");
+    
+    if (!offer) {
+      return res.status(404).json({ error: "Offer not found" });
+    }
+    
+    res.json({ message: "Offer updated successfully", offer });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Get offers for seller's properties
+app.get("/api/offers/seller", verifyToken, async (req, res) => {
+  try {
+    const userProperties = await Property.find({ ownerContact: req.user.phone });
+    const propertyIds = userProperties.map(p => p._id);
+    
+    const offers = await Offer.find({ property: { $in: propertyIds } })
+      .populate("property")
+      .populate("buyer", "name email phone")
+      .sort({ createdAt: -1 });
+    
+    res.json({ offers });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

@@ -1,7 +1,7 @@
 // PropertyCard.js
 import { useState } from "react";
 import api from "./api";
-import ContactSellerForm from "./ContactSellerForm";
+import BuyOptionsModal from "./BuyOptionsModal";
 
 export default function PropertyCard({ property, onRemove }) {
   const [showContact, setShowContact] = useState(false);
@@ -51,7 +51,7 @@ export default function PropertyCard({ property, onRemove }) {
     }
   };
 
-  // Open Contact Form
+  // Open Buy Options Modal
   const handleBuy = () => {
     setShowContactForm(true);
   };
@@ -127,9 +127,9 @@ export default function PropertyCard({ property, onRemove }) {
         </div>
       </div>
 
-      {/* Contact Seller Form Modal */}
+      {/* Buy Options Modal - Contact, Appointment, or Offer */}
       {showContactForm && (
-        <ContactSellerForm
+        <BuyOptionsModal
           property={property}
           onClose={() => setShowContactForm(false)}
           onSuccess={handleContactSuccess}
