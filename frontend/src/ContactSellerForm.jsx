@@ -48,21 +48,55 @@ export default function ContactSellerForm({ property, onClose, onSuccess }) {
     setLoading(true);
     setError("");
 
+    // Validation
+    if (!formData.message.trim()) {
+      setError("Please enter a message");
+      setLoading(false);
+      return;
+    }
+
     try {
       const token = localStorage.getItem("token");
-      await api.post("/contact-requests", {
+      if (!token) {
+        setError("You must be logged in to submit a contact request");
+        setLoading(false);
+        return;
+      }
+
+      console.log("Submitting contact request for property:", property._id);
+      console.log("Message:", formData.message);
+
+      const response = await api.post("/contact-requests", {
         propertyId: property._id,
         message: formData.message
       }, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
+      console.log("Contact request submitted successfully:", response.data);
       alert("Contact request submitted successfully! The seller will reach out to you soon.");
       if (onSuccess) onSuccess();
       onClose();
     } catch (err) {
       console.error("Error submitting contact request:", err);
-      setError(err.response?.data?.error || "Failed to submit contact request");
+      console.error("Error response:", err.response?.data);
+      console.error("Error status:", err.response?.status);
+      
+      let errorMessage = "Failed to submit contact request. ";
+      
+      if (err.response?.status === 401 || err.response?.status === 403) {
+        errorMessage += "Please log in again.";
+      } else if (err.response?.status === 404) {
+        errorMessage += "Property not found.";
+      } else if (err.response?.data?.error) {
+        errorMessage += err.response.data.error;
+      } else if (err.message) {
+        errorMessage += err.message;
+      } else {
+        errorMessage += "Please try again later.";
+      }
+      
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
